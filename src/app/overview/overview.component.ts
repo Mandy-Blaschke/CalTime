@@ -9,9 +9,10 @@ export class OverviewComponent implements OnInit {
 
   minus = false;
   hours = [];
-  calories = [0, 225, 550, 775, 1100, 1325, 1650, 1875, 2200];
+  calories = [0, 550, 1100, 1650, 2200];
+  buttons = [150, 200, 250, 300, 500, 1000];
 
-  energyBar = 25;
+  energyBar = 0;
   actualTime = '';
   timeBar = 0;
   now = new Date();
@@ -56,4 +57,12 @@ export class OverviewComponent implements OnInit {
     return value;
   }
 
+  addCalories(value: number): void {
+    this.energyBar += (value / 2200 * 100);
+  }
+
+  subtractCalories(value: number): void {
+    this.energyBar -= (value / 2200 * 100);
+    this.energyBar = Math.max(0, this.energyBar);
+  }
 }
