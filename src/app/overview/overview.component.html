@@ -1,0 +1,93 @@
+<div class="main-container">
+
+  <section class="diagram">
+
+    <div class="container">
+
+      <div class="legend">
+
+        <div>Zeit</div>
+        <div>Kalorien</div>
+
+      </div>
+
+      <div class="box">
+
+        <div class="time">
+
+          <div class="hour"
+               *ngFor="let hour of hours"
+          >
+            {{hour}}
+          </div>
+
+        </div>
+
+        <div
+          class="time-bar"
+          [style.height.%]="timeBar"
+        >
+          <p *ngIf="pastMinutes > 0">
+            {{actualTime}}
+          </p>
+        </div>
+
+        <div
+          class="energy-bar"
+          [style.height.%]="energyBar"
+        >
+          <p *ngIf="energyBar > 0">
+            {{energyBar * 22}}
+          </p>
+        </div>
+
+        <div class="energy">
+
+          <div class="energy-values"
+               *ngFor="let value of calories"
+          >
+            {{value}}
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="button-box">
+
+    <button>+150</button>
+    <button>+200</button>
+    <button>+250</button>
+    <button>+300</button>
+    <button>+500</button>
+    <button>+1000</button>
+
+    <button
+      class="minus-button"
+      (click)="minus = true"
+    >
+      Minus
+    </button>
+
+    <div
+      class="minus-buttons-box"
+      *ngIf="minus"
+    >
+
+      <button class="min-button">-150</button>
+      <button class="min-button">-200</button>
+      <button class="min-button">-250</button>
+      <button class="min-button">-300</button>
+      <button class="min-button">-500</button>
+      <button class="min-button">-1000</button>
+
+    </div>
+
+  </section>
+
+
+</div>
