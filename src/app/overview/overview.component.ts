@@ -12,7 +12,7 @@ export class OverviewComponent implements OnInit {
   calories = [0, 550, 1100, 1650, 2200];
   buttons = [150, 200, 250, 300, 500, 1000];
 
-  energyBar = 0;
+  caloriesEaten = 0;
   actualTime = '';
   timeBar = 0;
   now = new Date();
@@ -32,7 +32,14 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.fillHourArray();
-    this.actualTime = this.updateTime();
+    this.updateTime();
+    setInterval(() => this.updateTime(), 60000);
+  }
+
+
+  private updateTime(): void {
+    this.loadLocalStorage();
+    this.actualTime = this.getTimeString();
     this.timeBar = this.pastTimeOfDayInPercent();
     this.pastMinutes = (this.now.getTime() - this.dayStart.getTime()) / 60 / 1000;
   }
@@ -44,7 +51,7 @@ export class OverviewComponent implements OnInit {
     return pastHours / hoursPerDay * 100;
   }
 
-  updateTime(): string {
+  getTimeString(): string {
     const hours = new Date().getHours();
     const minutes = new Date().getMinutes();
     return this.addLeadingZero(hours) + ':' + this.addLeadingZero(minutes);
@@ -58,11 +65,42 @@ export class OverviewComponent implements OnInit {
   }
 
   addCalories(value: number): void {
-    this.energyBar += (value / 2200 * 100);
+    this.caloriesEaten += (value / 2200 * 100);
+    this.saveToLocalStorage();
   }
 
   subtractCalories(value: number): void {
-    this.energyBar -= (value / 2200 * 100);
-    this.energyBar = Math.max(0, this.energyBar);
+    this.caloriesEaten -= (value / 2200 * 100);
+    this.caloriesEaten = Math.max(0, this.caloriesEaten);
+    this.saveToLocalStorage();
   }
+
+  saveToLocalStorage(): void {
+    const data: Data = {
+      caloriesEaten: this.caloriesEaten,
+      date: this.getDate(new Date()),
+    };
+    localStorage.setItem('calories-eaten', JSON.stringify(data));
+  }
+
+  loadLocalStorage(): void {
+    const maybeDataString = localStorage.getItem('calories-eaten');
+    if (maybeDataString != null) {
+      const data = JSON.parse(maybeDataString) as Data;
+      if (this.getDate(new Date()) === data.date) {
+        this.caloriesEaten = data.caloriesEaten;
+      } else {
+        this.caloriesEaten = 0;
+      }
+    }
+  }
+
+  getDate(now: Date): string {
+    return this.addLeadingZero(now.getDate()) + '.' + this.addLeadingZero(now.getMonth()) + '.' + now.getFullYear();
+  }
+}
+
+interface Data {
+  caloriesEaten: number;
+  date: string;
 }
