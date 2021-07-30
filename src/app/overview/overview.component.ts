@@ -96,7 +96,7 @@ export class OverviewComponent implements OnInit {
   }
 
   getDate(now: Date): string {
-    return this.addLeadingZero(now.getDate()) + '.' + this.addLeadingZero(now.getMonth()) + '.' + now.getFullYear();
+    return this.addLeadingZero(now.getDate()) + '.' + this.addLeadingZero(now.getMonth() + 1) + '.' + now.getFullYear();
   }
 }
 
