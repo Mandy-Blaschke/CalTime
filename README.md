@@ -2,26 +2,27 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
 
-## Development server
+## Gegenstand
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Einfache Webanwendung, bei der die aufgenommenen Kalorien grob geschätzt eingetragen werden können und in Form eines
+Balkendiagramms dem Zeitverlauf gegenüber gestellt werden.
 
-## Code scaffolding
+So erhält man einen einfachen Überblick über den Tagesverlauf und der Kalorienaufnahme.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Weder wird eine Anmeldung benötigt, noch werden irgendwelchen Daten gespeichert.
 
-## Build
+Alle Eingaben werden lediglich im Local Storage gespeichert und werden bei Nutzung der App am nächsten Tag gelöscht.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Nutzung
 
-## Running unit tests
+So simpel die Anwendung, so einfach die Nutzung.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+App öffnen, durch Drücken der (+)Buttons werden die Kalorien gespeichert.
 
-## Running end-to-end tests
+Wird auf Minus gedrückt, öffnen sich die buttons, um Kalorien wieder abzuziehen - etwa wenn man sich vertan hat oder
+durch Sport oder andere Aktivitäten einen Mehrverbrauch hat.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Webansicht
 
-## Further help
+[CalTime](https://mb-caltime.web.app)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
