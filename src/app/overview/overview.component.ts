@@ -9,7 +9,7 @@ export class OverviewComponent implements OnInit {
 
   minus = false;
   hours = [];
-  calories = [0, 550, 1100, 1650, 2200];
+  calories = [0, 475, 950, 1425, 1900];
   buttons = [150, 200, 250, 300, 500, 1000];
 
   caloriesEaten = 0;
@@ -65,12 +65,12 @@ export class OverviewComponent implements OnInit {
   }
 
   addCalories(value: number): void {
-    this.caloriesEaten += (value / 2200 * 100);
+    this.caloriesEaten += (value / 1900 * 100);
     this.saveToLocalStorage();
   }
 
   subtractCalories(value: number): void {
-    this.caloriesEaten -= (value / 2200 * 100);
+    this.caloriesEaten -= (value / 1900 * 100);
     this.caloriesEaten = Math.max(0, this.caloriesEaten);
     this.saveToLocalStorage();
   }
